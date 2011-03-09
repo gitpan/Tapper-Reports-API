@@ -13,15 +13,15 @@
 
 #     ABSTRACT => q[Tapper - Remote network API]
 #     AUTHOR => q[AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>, AMD OSRC Tapper Team <tapper@amd64.org>]
-#     BUILD_REQUIRES => { Test::Fixture::DBIC::Schema=>q[0], Test::Perl::Critic=>q[0], Test::More=>q[0], Tapper::Test=>q[3.000001], ExtUtils::MakeMaker=>q[6.42], Test::Deep=>q[0], Cwd=>q[0] }
+#     BUILD_REQUIRES => { Test::Fixture::DBIC::Schema=>q[0], Test::Perl::Critic=>q[0], Test::More=>q[0], Tapper::Test=>q[3.000002], ExtUtils::MakeMaker=>q[6.42], Test::Deep=>q[0], Cwd=>q[0] }
 #     DISTNAME => q[Tapper-Reports-API]
 #     EXE_FILES => [q[bin/tapper-reports-api], q[bin/tapper-reports-api-daemon]]
 #     LICENSE => q[freebsd]
 #     MIN_PERL_VERSION => q[5.010]
 #     NAME => q[Tapper::Reports::API]
 #     NO_META => q[1]
-#     PREREQ_PM => { Test::Fixture::DBIC::Schema=>q[0], ExtUtils::MakeMaker=>q[6.42], Tapper::Test=>q[3.000001], Net::Server=>q[0], Tapper::Schema=>q[3.000001], Test::More=>q[0], Test::Perl::Critic=>q[0], Tapper::Config=>q[3.000001], Tapper::Reports::DPath=>q[3.000001], Data::Structure::Util=>q[0], Module::Build=>q[0], Test::Deep=>q[0], MooseX::Daemonize=>q[0.08], Cwd=>q[0], Moose=>q[0.72] }
-#     VERSION => q[3.000001]
+#     PREREQ_PM => { Test::Fixture::DBIC::Schema=>q[0], ExtUtils::MakeMaker=>q[6.42], Tapper::Test=>q[3.000002], Net::Server=>q[0], Tapper::Schema=>q[3.000002], Test::More=>q[0], Test::Perl::Critic=>q[0], Tapper::Config=>q[3.000002], Tapper::Reports::DPath=>q[3.000002], Data::Structure::Util=>q[0], Module::Build=>q[0], Test::Deep=>q[0], MooseX::Daemonize=>q[0.08], Cwd=>q[0], Moose=>q[0.72] }
+#     VERSION => q[3.000002]
 #     VERSION_FROM => q[lib/Tapper/Reports/API.pm]
 #     dist => { PREOP=>q[$(PERL) -I. "-MModule::Install::Admin" -e "dist_preop(q($(DISTVNAME)))"] }
 #     realclean => { FILES=>q[MYMETA.yml] }
@@ -64,11 +64,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = Tapper::Reports::API
 NAME_SYM = Tapper_Reports_API
-VERSION = 3.000001
+VERSION = 3.000002
 VERSION_MACRO = VERSION
-VERSION_SYM = 3_000001
+VERSION_SYM = 3_000002
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 3.000001
+XS_VERSION = 3.000002
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -265,7 +265,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = Tapper-Reports-API
-DISTVNAME = Tapper-Reports-API-3.000001
+DISTVNAME = Tapper-Reports-API-3.000002
 
 
 # --- MakeMaker macro section:
@@ -795,7 +795,7 @@ testdb_static :: testdb_dynamic
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
-	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="3.000001">' > $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="3.000002">' > $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <ABSTRACT>Tapper - Remote network API</ABSTRACT>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>AMD OSRC Tapper Team, C&lt;&lt; &lt;tapper at amd64.org&gt; &gt;&gt;, AMD OSRC Tapper Team &lt;tapper@amd64.org&gt;</AUTHOR>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> $(DISTNAME).ppd
@@ -805,9 +805,9 @@ ppd :
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Moose::" VERSION="0.72" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="MooseX::Daemonize" VERSION="0.08" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Net::Server" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Tapper::Config" VERSION="3.000001" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Tapper::Reports::DPath" VERSION="3.000001" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Tapper::Schema" VERSION="3.000001" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Tapper::Config" VERSION="3.000002" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Tapper::Reports::DPath" VERSION="3.000002" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Tapper::Schema" VERSION="3.000002" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="i686-linux-5.12" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <CODEBASE HREF="" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    </IMPLEMENTATION>' >> $(DISTNAME).ppd

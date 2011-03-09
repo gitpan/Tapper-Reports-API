@@ -6,7 +6,7 @@ author:
 build_requires:
   Cwd: 0
   ExtUtils::MakeMaker: 6.42
-  Tapper::Test: 3.000001
+  Tapper::Test: 3.000002
   Test::Deep: 0
   Test::Fixture::DBIC::Schema: 0
   Test::More: 0
@@ -31,8 +31,8 @@ requires:
   Moose: 0.72
   MooseX::Daemonize: 0.08
   Net::Server: 0
-  Tapper::Config: 3.000001
-  Tapper::Reports::DPath: 3.000001
-  Tapper::Schema: 3.000001
+  Tapper::Config: 3.000002
+  Tapper::Reports::DPath: 3.000002
+  Tapper::Schema: 3.000002
   perl: 5.010
-version: 3.000001
+version: 3.000002
