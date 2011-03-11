@@ -15,7 +15,6 @@ lib/Tapper/Reports/API.pm
 lib/Tapper/Reports/API/Daemon.pm
 LICENSE
 Makefile
-Makefile.old
 Makefile.PL
 MANIFEST			This list of files
 MANIFEST.SKIP
@@ -25,7 +24,6 @@ t/00-load.t
 t/00-tapper-meta.t
 t/api.t
 t/api_client_server.t
-t/boilerplate.t
 t/fixtures/reportsdb/report.yml
 t/perfmon_tests_planned.expected
 t/perfmon_tests_planned.mas
