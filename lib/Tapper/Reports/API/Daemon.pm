@@ -1,4 +1,10 @@
 package Tapper::Reports::API::Daemon;
+BEGIN {
+  $Tapper::Reports::API::Daemon::AUTHORITY = 'cpan:AMD';
+}
+{
+  $Tapper::Reports::API::Daemon::VERSION = '4.0.1';
+}
 
 use 5.010;
 
@@ -23,10 +29,11 @@ after start => sub {
                    }
 ;
 
+
 sub initialize_server
 {
         my $self = shift;
-        
+
         my $EUID = `id -u`; chomp $EUID;
         my $EGID = `id -g`; chomp $EGID;
         Tapper::Reports::API->run(
@@ -39,6 +46,7 @@ sub initialize_server
                                   );
 }
 ;
+
 
 sub run
 {
@@ -53,3 +61,35 @@ sub run
 
 
 1;
+
+__END__
+=pod
+
+=encoding utf-8
+
+=head1 NAME
+
+Tapper::Reports::API::Daemon
+
+=head2 initialize_server
+
+Initialize and start daemon according to config.
+
+=head2 run
+
+Frontend to subcommands: start, status, restart, stop.
+
+=head1 AUTHOR
+
+AMD OSRC Tapper Team <tapper@amd64.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
+
+This is free software, licensed under:
+
+  The (two-clause) FreeBSD License
+
+=cut
+

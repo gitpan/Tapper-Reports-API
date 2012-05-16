@@ -1,10 +1,15 @@
 package Tapper::Reports::API;
+BEGIN {
+  $Tapper::Reports::API::AUTHORITY = 'cpan:AMD';
+}
+{
+  $Tapper::Reports::API::VERSION = '4.0.1';
+}
+# ABSTRACT: Tapper - Remote network API for result evaluation
 
 use 5.010;
 use strict;
 use warnings;
-
-our $VERSION = '3.000010';
 
 use parent 'Net::Server::Fork';
 
@@ -12,6 +17,7 @@ use Tapper::Reports::DPath::Mason;
 use Tapper::Reports::DPath::TT;
 use Tapper::Model 'model';
 use Data::Dumper;
+
 
 sub process_request
 {
@@ -25,6 +31,7 @@ sub process_request
         $self->$handle (@args);
 }
 
+
 sub handle_TAP
 {
         my ($self, @args) = @_;
@@ -33,20 +40,26 @@ sub handle_TAP
         print STDERR "Unrecognized input.\n";
 }
 
+
 sub handle_download
 {
         my ($self, $report_id, $filename, $index) = @_;
 
         $index ||= 0;
-        my ($reportfile) =
+        my $asc_desc = $index < 0 ? '-desc' : '-asc';
+        $index = abs $index;
+        my %reportfilter = ();
+        $reportfilter{report_id} = $report_id if $report_id;
+        my $reportfile =
          model('ReportsDB')
           ->resultset('ReportFile')
-           ->search ({ report_id => $report_id,
-                       filename  => $filename },
-                     { order_by  => 'id' })
-            ->slice($index, $index);
-        print $reportfile->filecontent if $reportfile->report_id;
+           ->search ({ %reportfilter,
+                       filename  => { like => $filename } },
+                     { order_by  => { $asc_desc => 'id' } })
+            ->slice($index, $index)->first;
+        print $reportfile->filecontent if $reportfile;
 }
+
 
 sub get_payload
 {
@@ -72,6 +85,7 @@ sub get_payload
 
 }
 
+
 sub handle_tt
 {
         my ($self, @args) = @_;
@@ -80,11 +94,15 @@ sub handle_tt
         my %args = _parse_args(@args[0..$#args-1]);
         my $payload = $self->get_payload(@args);
 
-        my $tt  = new Tapper::Reports::DPath::TT(debug => $args{debug} ? 1 : 0);
-        my $answer = $tt->render(template => $payload);
+        my $tt  = Tapper::Reports::DPath::TT->new (
+                                                   debug           => $args{debug}           ? 1 : 0,
+                                                   puresqlabstract => $args{puresqlabstract} ? 1 : 0,
+                                                  );
+          my $answer = $tt->render(template => $payload);
 
         print $answer;
 }
+
 
 sub handle_upload
 {
@@ -114,6 +132,7 @@ sub _parse_args {
         return %args;
 }
 
+
 sub handle_mason
 {
         my ($self, @args) = @_;
@@ -122,7 +141,10 @@ sub handle_mason
         my %args = _parse_args(@args[0..$#args-1]);
         my $payload = $self->get_payload(@args);
 
-        my $mason  = new Tapper::Reports::DPath::Mason(debug => $args{debug} ? 1 : 0);
+        my $mason  = Tapper::Reports::DPath::Mason->new (
+                                                         debug           => $args{debug}           ? 1 : 0,
+                                                         puresqlabstract => $args{puresqlabstract} ? 1 : 0,
+                                                        );
         my $answer = $mason->render(template => $payload);
 
         print $answer;
@@ -138,36 +160,67 @@ sub _split_cmdline
         return @list;
 }
 
+
 sub post_process_request_hook
 {
         my ($self) = @_;
 }
 
-1;
+1; # End of Tapper::Reports::API
 
+__END__
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
 Tapper::Reports::API - Tapper - Remote network API for result evaluation
 
+=head2 process_request
 
-=head1 SYNOPSIS
+Initial hook called on incoming data, reads first line and calls
+respective handler.
 
-    use Tapper::Reports::API;
-    my $foo = Tapper::Reports::API->new();
-    ...
+=head2 handle_TAP
+
+Handler for incoming TAP.
+
+=head2 handle_download
+
+Handler for download request.
+
+=head2 get_payload
+
+Get the payload of an API request (the stuff after the first line).
+
+=head2 handle_tt
+
+Handler for TT query API requests.
+
+=head2 handle_upload
+
+Handler for upload requests.
+
+=head2 handle_mason
+
+Handler for TT query API requests.
+
+=head2 post_process_request_hook
+
+Hook called after processing, currrently a no-op.
 
 =head1 AUTHOR
 
-AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
+AMD OSRC Tapper Team <tapper@amd64.org>
 
-=head1 COPYRIGHT & LICENSE
+=head1 COPYRIGHT AND LICENSE
 
-Copyright 2008-2011 AMD OSRC Tapper Team, all rights reserved.
+This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
 
-This program is released under the following license: freebsd
+This is free software, licensed under:
 
+  The (two-clause) FreeBSD License
 
 =cut
 
-1; # End of Tapper::Reports::API

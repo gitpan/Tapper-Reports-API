@@ -1,3 +1,11 @@
+Revision history for Tapper-Reports-API
+
+4.0.1     2012-05-16
+        - misc bugfixes everywhere
+        - [FEAT] allow pure SQL::Abstract queries in query api
+        - [FEAT] allow search by filename without report
+        - big Dist::Zilla roundhouse kick
+
 2011-04-07  Steffen Schwigon  <steffen.schwigon@amd.com>
 
 	* v3.0.10
