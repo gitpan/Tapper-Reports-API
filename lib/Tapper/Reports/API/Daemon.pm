@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Reports::API::Daemon::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Reports::API::Daemon::VERSION = '4.0.1';
+  $Tapper::Reports::API::Daemon::VERSION = '4.1.0';
 }
 
 use 5.010;
