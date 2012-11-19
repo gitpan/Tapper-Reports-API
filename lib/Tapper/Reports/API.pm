@@ -1,11 +1,11 @@
 package Tapper::Reports::API;
-# git description: v4.0.1-1-gecf7c0e
+# git description: v4.1.0-1-gf8dcc99
 
 BEGIN {
-  $Tapper::Reports::API::AUTHORITY = 'cpan:AMD';
+  $Tapper::Reports::API::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Reports::API::VERSION = '4.1.0';
+  $Tapper::Reports::API::VERSION = '4.1.1';
 }
 # ABSTRACT: Tapper - Remote network API for result evaluation
 

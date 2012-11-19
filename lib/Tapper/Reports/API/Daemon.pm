@@ -1,9 +1,9 @@
 package Tapper::Reports::API::Daemon;
 BEGIN {
-  $Tapper::Reports::API::Daemon::AUTHORITY = 'cpan:AMD';
+  $Tapper::Reports::API::Daemon::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Reports::API::Daemon::VERSION = '4.1.0';
+  $Tapper::Reports::API::Daemon::VERSION = '4.1.1';
 }
 
 use 5.010;
