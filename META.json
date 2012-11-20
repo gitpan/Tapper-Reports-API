@@ -22,6 +22,7 @@
       "runtime" : {
          "requires" : {
             "Data::Dumper" : "0",
+            "Data::Serializer" : "0",
             "Moose" : "0",
             "MooseX::Daemonize" : "0",
             "Net::Server::Fork" : "0",
@@ -63,7 +64,7 @@
          "web" : "http://github.com/tapper/Tapper-Reports-API"
       }
    },
-   "version" : "4.1.1",
+   "version" : "4.1.2",
    "x_Dist_Zilla" : {
       "plugins" : [
          {
@@ -230,6 +231,17 @@
             "class" : "Dist::Zilla::Plugin::Git::Push",
             "name" : "@TAPPER/@Git/Push",
             "version" : "1.122530"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Prereqs",
+            "config" : {
+               "Dist::Zilla::Plugin::Prereqs" : {
+                  "phase" : "runtime",
+                  "type" : "requires"
+               }
+            },
+            "name" : "Prereqs",
+            "version" : "4.300023"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",

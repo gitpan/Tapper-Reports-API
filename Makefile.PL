@@ -36,6 +36,7 @@ my %WriteMakefileArgs = (
   "NAME" => "Tapper::Reports::API",
   "PREREQ_PM" => {
     "Data::Dumper" => 0,
+    "Data::Serializer" => 0,
     "Moose" => 0,
     "MooseX::Daemonize" => 0,
     "Net::Server::Fork" => 0,
@@ -46,7 +47,7 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "4.1.1",
+  "VERSION" => "4.1.2",
   "test" => {
     "TESTS" => "t/*.t"
   }
